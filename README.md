@@ -1,2 +1,2 @@
-# Digital_Photo_Frame
+# Digital Photo Frame
 see name
