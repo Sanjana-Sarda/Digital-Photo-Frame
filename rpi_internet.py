@@ -1,5 +1,6 @@
 import time
 import network
+import urequests
 
 ssid = ''
 password = ''
@@ -24,4 +25,8 @@ else:
     print('connected')
     status = wlan.ifconfig()
     print( 'ip = ' + status[0] )
+    
+r = urequests.get("http://avic411.com/uploads/monthly_10_2010/post-20866-12872754805982.jpg")
+print (r.content)
+r.close()
 
