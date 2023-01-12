@@ -189,17 +189,48 @@ if __name__=='__main__':
     epd = EPD_7in5()
     epd.Clear()
     
-    with open('small.pbm', 'rb') as f:
-        f.readline() 
-        f.readline() # Creator comment
-        f.readline() # Dimensions
-        data = bytearray(f.read())
-    fbuf = framebuf.FrameBuffer(data, 128, 64, framebuf.MONO_HLSB)
-    epd.blit(fbuf, 0, 0)
+    # Create a framebuffer object for the display
+    buf = bytearray(EPD_WIDTH * EPD_HEIGHT // 8)
+    fbuf = framebuf.FrameBuffer(buf, EPD_WIDTH, EPD_HEIGHT, framebuf.MONO_HLSB)
+    
+    rows = EPD_HEIGHT // 160
+    cols = EPD_WIDTH // 160
+
+    # Iterate over the cropped images
+    for i in range(rows):
+        for j in range(cols):
+            with open(f'image_{i}_{j}.bmp', 'rb') as f:
+                # Read the bmp file
+                bmp_data = f.read()
+            # Verify that the file is a BMP file
+            if bmp_data[:2] != b'BM':
+                raise ValueError("Invalid BMP file")
+            # Get the offset of the pixel data
+            offset = int.from_bytes(bmp_data[10:14], "little")
+            # Get the width and height of the image
+            width = int.from_bytes(bmp_data[18:22], "little")
+            height = int.from_bytes(bmp_data[22:26], "little")
+            # Get the pixel data
+            pixels = bmp_data[offset:]
+            # Copy the pixel data to the framebuffer
+            for sub_y in range(height-1, -1, -1):
+                for sub_x in range(width):
+                    # Get the index of the pixel in the pixel data
+                    index = (width * sub_y + sub_x) // 8
+                    # Get the bit value of the pixel
+                    bit = (pixels[index] >> (sub_x % 8)) & 1
+                    # Invert the color of the pixel
+                    inverted_bit = bit ^ 1
+                    # Set the pixel value in the framebuffer
+                    fbuf.pixel(j*width+sub_x, i*height+height-sub_y-1, inverted_bit)
+            # Update the e-paper display with the new framebuffer
+        epd.blit(fbuf, 0, 0)
+        #epd.display(epd.buffer)
+
     epd.display(epd.buffer)    
     epd.delay_ms(500)
         
-    epd.Clear()
+    #epd.Clear()
     epd.delay_ms(2000)
     print("sleep")
     epd.sleep()
