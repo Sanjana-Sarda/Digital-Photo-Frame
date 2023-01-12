@@ -3,7 +3,7 @@
 from PIL import Image
 
 # Open the image
-image = Image.open('IMG-20200725-WA0000.pbm')
+image = Image.open('test.pbm')
 
 # Get the width and height of the image
 width, height = image.size
