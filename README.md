@@ -2,6 +2,11 @@
 
 Raspberry Pico W with Waveshare 7.5 in epaper (black/white)
 
+<p float="left">
+  <img src="rem_images/20230111_210927.jpg" width="500" />
+  <img src="rem_images/IMG-20200725-WA0000.jpg" width="500" /> 
+</p>
+
 ## Hardware Setup
 - https://www.waveshare.com/wiki/Pico-ePaper-7.5 
 
@@ -23,4 +28,5 @@ Raspberry Pico W with Waveshare 7.5 in epaper (black/white)
 - Multiple Images
 - Google Photos support 
 
-
+## References 
+- https://www.mfitzp.com/displaying-images-oled-displays/ 
