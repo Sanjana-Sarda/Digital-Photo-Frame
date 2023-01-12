@@ -22,6 +22,7 @@ Raspberry Pico W with Waveshare 7.5 in epaper (black/white)
 
 ## Steps to use
 - Run img_gen.py on pbm file (breaks image into small chunks to avoid memory allocation errors)
+- Upload chunk images to pico
 - Run disp.py on pico 
 
 ## Features coming soon (aka in 3 months hopefully) 
