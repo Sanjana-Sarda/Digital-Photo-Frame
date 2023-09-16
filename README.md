@@ -21,13 +21,15 @@ Raspberry Pico W with Waveshare 7.5 in epaper (black/white)
 - Save as pbm
 
 ## Steps to use
-- Run img_gen.py on pbm file (breaks image into small chunks to avoid memory allocation errors)
-- Upload chunk images to pico
+- Add images to an "input" folder
+- Run img_process.py for image prep (can skip doing this in GIMP)
+- Run img_generate.py (breaks image into small chunks to avoid memory allocation errors)
+- Upload contents of the "bmp" folder to pico
 - Run disp.py on pico 
 
 ## Features coming soon (aka in 3 months hopefully) 
-- Multiple Images
-- Google Photos support 
+- Google Drive support
+- Image Loop
 
 ## References 
 - https://www.mfitzp.com/displaying-images-oled-displays/ 
