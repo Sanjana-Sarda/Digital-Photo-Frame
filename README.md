@@ -30,6 +30,7 @@ Raspberry Pico W with Waveshare 7.5 in epaper (black/white)
 ## Features coming soon (aka in 3 months hopefully) 
 - Google Drive support
 - Image Loop
+- Self-sustained power source?
 
 ## References 
 - https://www.mfitzp.com/displaying-images-oled-displays/ 
